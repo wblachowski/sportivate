@@ -94,6 +94,7 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
 
         LatLng putLocation = new LatLng(52.4041498, 16.9503366);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(putLocation, 16.5f));
+        googleMap.getUiSettings().setMapToolbarEnabled(false);
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4024143, 16.949)).title("Mecz piłki nożnej").snippet("Dziś: 18:00-19:30\nWolnych miejsc: 4")));
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.3963452, 16.937572)).title("Debel w tenisa").snippet("Jutro: 11:00-12:00\nWolnych miejsc: 1")));
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4057828, 16.9278278)).title("Mecz piłki nożnej halowej").snippet("Dziś: 15:30-16:30\nWolnych miejsc: 2")));
