@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Nazwa" />
+                android:hint="Nazwa" />
 
             <Spinner
                 android:id="@+id/spinner"
