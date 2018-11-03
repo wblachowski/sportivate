@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_events);
+        navigationView.setCheckedItem(R.id.nav_map);
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new EventsMapFragment()).commit();
     }
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_events) {
+        if (id == R.id.nav_map) {
             fm.beginTransaction().replace(R.id.content_frame, new EventsMapFragment()).commit();
         } else if (id == R.id.nav_slideshow) {
 
