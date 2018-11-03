@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,15 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
         super.onViewCreated(view, savedInstanceState);
         MapFragment fragment = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         fragment.getMapAsync(this);
+
+        FloatingActionButton newActivityButton = view.findViewById(R.id.fab);
+        newActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NewEventActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
