@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_map) {
             fm.beginTransaction().replace(R.id.content_frame, new EventsMapFragment()).commit();
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_joined_events) {
+            fm.beginTransaction().replace(R.id.content_frame, new JoinedEventsFragment()).commit();
+        } else if (id == R.id.nav_your_events) {
 
         } else if (id == R.id.nav_share) {
 
