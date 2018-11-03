@@ -1,9 +1,12 @@
 package com.wblachowski.sportivate;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventDetailsActivity extends AppCompatActivity {
 
@@ -23,5 +26,16 @@ public class EventDetailsActivity extends AppCompatActivity {
             textView.setText(participant);
             layout.addView(textView);
         }
+
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Event event = new Event(getIntent().getStringExtra("TITLE"),getIntent().getStringExtra("SNIPPET"));
+                JoinedEvents.events.add(event);
+                Toast.makeText(getApplicationContext(), "Dołączyłeś do wydarzenia", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 }
