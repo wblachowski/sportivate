@@ -14,15 +14,6 @@
         android:padding="8dp"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp">
-
-        <TextView
-            android:id="@+id/eventTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Title"
-            android:textSize="16pt"
-            android:textStyle="bold"/>
         <TextView
             android:id="@+id/eventSnippet"
             android:layout_width="wrap_content"

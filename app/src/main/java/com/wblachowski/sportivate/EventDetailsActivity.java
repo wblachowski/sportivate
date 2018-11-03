@@ -10,9 +10,8 @@ public class EventDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
-
-        TextView title = (TextView) findViewById(R.id.eventTitle);
-        title.setText(getIntent().getStringExtra("TITLE"));
+        getSupportActionBar().setHomeButtonEnabled(true);
+        setTitle(getIntent().getStringExtra("TITLE"));
         TextView snippet = (TextView) findViewById(R.id.eventSnippet);
         snippet.setText(getIntent().getStringExtra("SNIPPET"));
     }

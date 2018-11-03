@@ -27,7 +27,15 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity
+            android:name=".EventDetailsActivity"
+            android:label="Event Details"
+            android:parentActivityName=".MainActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -35,7 +43,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDx66gK9_iFXVMuAolYSGS9d2lDOjZ5ZGk" />
 
-        <activity android:name=".EventDetailsActivity"></activity>
     </application>
 
 </manifest>
