@@ -31,6 +31,18 @@
                 android:layout_height="wrap_content"
                 />
 
+            <Button
+                android:id="@+id/buttonDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wybierz datę" />
+
+            <Button
+                android:id="@+id/buttonTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wybierz godzinę" />
+
         </LinearLayout>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
