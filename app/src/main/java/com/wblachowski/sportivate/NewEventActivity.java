@@ -80,6 +80,7 @@ public class NewEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Event event = new Event(editTextName.getText().toString(), editTextDate.getText() + ": " + editTextTime.getText());
+                event.setLatlng(selectedPlace.getLatLng());
                 YourEvents.events.add(event);
                 Toast.makeText(NewEventActivity.this, "Dodano wydarzenie", Toast.LENGTH_SHORT).show();
                 finish();
