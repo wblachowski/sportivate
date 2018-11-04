@@ -60,7 +60,7 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        this.googleMap=googleMap;
+        this.googleMap = googleMap;
         googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
             @Override
@@ -106,17 +106,17 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4061093, 16.9548363)).title("Bieganie - 10km").snippet("Dziś: 18:00-19:30")));
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4107993, 16.9743443)).title("Mecz koszykówki").snippet("Dziś: 20:00-21:30\nWolnych miejsc: 6")));
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4099693, 16.9387593)).title("Mecz siatkówki").snippet("Dziś: 15:00-16:00\nWolnych miejsc: 1")));
-        for(Event event : YourEvents.events){
+        for (Event event : YourEvents.events) {
             yourMarkers.add(googleMap.addMarker(new MarkerOptions().position(event.getLatlng()).title(event.getTitle()).snippet(event.getSnippet())));
         }
-        for(Marker marker: markers){
-            if(JoinedEvents.events.contains(new Event(marker.getTitle(),marker.getSnippet()))){
+        for (Marker marker : markers) {
+            if (JoinedEvents.events.contains(new Event(marker.getTitle(), marker.getSnippet()))) {
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-            }else{
+            } else {
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             }
         }
-        for(Marker marker: yourMarkers){
+        for (Marker marker : yourMarkers) {
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
         }
     }
@@ -132,18 +132,20 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
     @Override
     public void onResume() {
         super.onResume();
-        for(Marker marker: markers){
-            if(JoinedEvents.events.contains(new Event(marker.getTitle(),marker.getSnippet()))){
+        for (Marker marker : markers) {
+            if (JoinedEvents.events.contains(new Event(marker.getTitle(), marker.getSnippet()))) {
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-            }else{
+            } else {
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             }
         }
         yourMarkers.clear();
-        for(Event event : YourEvents.events){
-            yourMarkers.add(googleMap.addMarker(new MarkerOptions().position(event.getLatlng()).title(event.getTitle()).snippet(event.getSnippet())));
+        if (googleMap != null) {
+            for (Event event : YourEvents.events) {
+                yourMarkers.add(googleMap.addMarker(new MarkerOptions().position(event.getLatlng()).title(event.getTitle()).snippet(event.getSnippet())));
+            }
         }
-        for(Marker marker: yourMarkers){
+        for (Marker marker : yourMarkers) {
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
         }
     }

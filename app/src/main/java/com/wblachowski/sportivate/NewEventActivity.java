@@ -76,10 +76,12 @@ public class NewEventActivity extends AppCompatActivity {
 
         Button button = (Button) findViewById(R.id.buttonAdd);
         final EditText editTextName = (EditText) findViewById(R.id.editTextName);
+        final EditText editTextPeople = (EditText) findViewById(R.id.editTextPeople);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Event event = new Event(editTextName.getText().toString(), editTextDate.getText() + ": " + editTextTime.getText());
+                final int people = Integer.parseInt(editTextPeople.getText().toString());
+                Event event = new Event(editTextName.getText().toString(), editTextDate.getText() + ": " + editTextTime.getText() + "\nWolnych miejsc: "+ (people-1));
                 event.setLatlng(selectedPlace.getLatLng());
                 YourEvents.events.add(event);
                 Toast.makeText(NewEventActivity.this, "Dodano wydarzenie", Toast.LENGTH_SHORT).show();
