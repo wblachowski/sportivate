@@ -104,6 +104,13 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4061093, 16.9548363)).title("Bieganie - 10km").snippet("Dziś: 18:00-19:30")));
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4107993, 16.9743443)).title("Mecz koszykówki").snippet("Dziś: 20:00-21:30\nWolnych miejsc: 6")));
         markers.add(googleMap.addMarker(new MarkerOptions().position(new LatLng(52.4099693, 16.9387593)).title("Mecz siatkówki").snippet("Dziś: 15:00-16:00\nWolnych miejsc: 1")));
+        for(Marker marker: markers){
+            if(JoinedEvents.events.contains(new Event(marker.getTitle(),marker.getSnippet()))){
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            }else{
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            }
+        }
     }
 
     @Override
