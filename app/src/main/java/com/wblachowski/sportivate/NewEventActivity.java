@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
@@ -27,6 +28,8 @@ public class NewEventActivity extends AppCompatActivity {
 
         Button buttonDate = (Button) findViewById(R.id.buttonDate);
         Button buttonTime = (Button) findViewById(R.id.buttonTime);
+        final EditText editTextDate = (EditText) findViewById(R.id.editTextDate);
+        final EditText editTextTime = (EditText) findViewById(R.id.editTextTime);
 
         buttonDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +42,7 @@ public class NewEventActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-
+                                editTextDate.setText(day + "." + month + "." + year);
                             }
                         }, year, month, dayOfMonth);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
@@ -53,10 +56,10 @@ public class NewEventActivity extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 TimePickerDialog timePickerDialog = new TimePickerDialog(NewEventActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
-                    public void onTimeSet(TimePicker timePicker, int year, int month) {
-
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                        editTextTime.setText(hourOfDay + ":" + minute);
                     }
-                },calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true);
+                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
             }
         });
