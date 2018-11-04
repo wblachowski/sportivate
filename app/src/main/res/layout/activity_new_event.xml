@@ -52,7 +52,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:inputType="textPersonName"
-                    android:text="Data" />
+                    android:hint="Data" />
 
                 <Button
                     android:id="@+id/buttonDate"
@@ -78,7 +78,7 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:inputType="textPersonName"
-                    android:text="Godzina" />
+                    android:hint="Godzina" />
 
                 <Button
                     android:id="@+id/buttonTime"
