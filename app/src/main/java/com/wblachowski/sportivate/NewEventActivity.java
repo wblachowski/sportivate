@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -61,6 +62,18 @@ public class NewEventActivity extends AppCompatActivity {
                     }
                 }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
+            }
+        });
+
+        Button button = (Button) findViewById(R.id.buttonAdd);
+        final EditText editTextName = (EditText) findViewById(R.id.editTextName);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Event event = new Event(editTextName.getText().toString(),editTextDate.getText() + ": " + editTextTime.getText());
+                YourEvents.events.add(event);
+                Toast.makeText(NewEventActivity.this,"Dodano wydarzenie",Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
