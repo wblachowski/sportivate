@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_joined_events) {
             fm.beginTransaction().replace(R.id.content_frame, new JoinedEventsFragment()).commit();
         } else if (id == R.id.nav_your_events) {
-
+            fm.beginTransaction().replace(R.id.content_frame, new YourEventsFragment()).commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
