@@ -23,7 +23,7 @@
                 android:icon="@drawable/ic_menu_send"
                 android:title="Zaproś znajomych" />
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings_black_24dp"
                 android:title="Ustawienia" />
         </menu>

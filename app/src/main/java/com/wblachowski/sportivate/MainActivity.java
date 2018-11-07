@@ -1,8 +1,8 @@
 package com.wblachowski.sportivate;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -78,10 +78,10 @@ public class MainActivity extends AppCompatActivity
             fm.beginTransaction().replace(R.id.content_frame, new JoinedEventsFragment()).commit();
         } else if (id == R.id.nav_your_events) {
             fm.beginTransaction().replace(R.id.content_frame, new YourEventsFragment()).commit();
-        } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_settings) {
+            fm.beginTransaction().replace(R.id.content_frame,new SettingsFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
