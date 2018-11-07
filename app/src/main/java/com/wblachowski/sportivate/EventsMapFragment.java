@@ -126,6 +126,7 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
         Intent intent = new Intent(getActivity(), EventDetailsActivity.class);
         intent.putExtra("TITLE", marker.getTitle());
         intent.putExtra("SNIPPET", marker.getSnippet());
+        intent.putExtra("YOUR",yourMarkers.contains(marker));
         startActivity(intent);
     }
 
@@ -138,6 +139,9 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
             } else {
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             }
+        }
+        for(Marker marker : yourMarkers){
+            marker.remove();
         }
         yourMarkers.clear();
         if (googleMap != null) {

@@ -19,34 +19,50 @@ public class EventDetailsActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("TITLE"));
         TextView snippet = (TextView) findViewById(R.id.eventSnippet);
         snippet.setText(getIntent().getStringExtra("SNIPPET"));
+        boolean isYours = getIntent().getBooleanExtra("YOUR",false);
+
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.eventLayout);
-        String[] participants = {"Jan Kowalski","Adam Bednarek","Zdzisław Zamojcin"};
-        for(String participant : participants){
+        String[] participants = {"Jan Kowalski", "Adam Bednarek", "Zdzisław Zamojcin"};
+        for (String participant : participants) {
             TextView textView = new TextView(this);
             textView.setText(participant);
             layout.addView(textView);
         }
 
         Button button = (Button) findViewById(R.id.button);
-        if(JoinedEvents.events.contains(new Event(getIntent().getStringExtra("TITLE"),getIntent().getStringExtra("SNIPPET")))){
-            button.setText("Zrezygnuj");
-        }
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Event event = new Event(getIntent().getStringExtra("TITLE"),getIntent().getStringExtra("SNIPPET"));
 
-                if(JoinedEvents.events.contains(event)){
-                    JoinedEvents.events.remove(event);
-                    Toast.makeText(getApplicationContext(), "Zrezygnowałeś z wydarzenia", Toast.LENGTH_SHORT).show();
-                }else{
-                    JoinedEvents.events.add(event);
-                    Toast.makeText(getApplicationContext(), "Dołączyłeś do wydarzenia", Toast.LENGTH_SHORT).show();
+        if (isYours) {
+            button.setText("Odwołaj");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Event event = new Event(getIntent().getStringExtra("TITLE"), getIntent().getStringExtra("SNIPPET"));
+                    YourEvents.events.remove(event);
+                    Toast.makeText(getApplicationContext(), "Odwołałeś wydarzenie", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
-                finish();
+            });
+        } else {
+            if (JoinedEvents.events.contains(new Event(getIntent().getStringExtra("TITLE"), getIntent().getStringExtra("SNIPPET")))) {
+                button.setText("Zrezygnuj");
             }
-        });
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Event event = new Event(getIntent().getStringExtra("TITLE"), getIntent().getStringExtra("SNIPPET"));
+
+                    if (JoinedEvents.events.contains(event)) {
+                        JoinedEvents.events.remove(event);
+                        Toast.makeText(getApplicationContext(), "Zrezygnowałeś z wydarzenia", Toast.LENGTH_SHORT).show();
+                    } else {
+                        JoinedEvents.events.add(event);
+                        Toast.makeText(getApplicationContext(), "Dołączyłeś do wydarzenia", Toast.LENGTH_SHORT).show();
+                    }
+                    finish();
+                }
+            });
+        }
     }
 
     @Override
