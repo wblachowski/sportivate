@@ -25,7 +25,7 @@ public class YourEventsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView =  getActivity().findViewById(R.id.listview);
+        listView =  getActivity().findViewById(R.id.listviewYour);
         EventsAdapter adapter = new EventsAdapter(getActivity(), YourEvents.events);
         listView.setAdapter(adapter);
     }
