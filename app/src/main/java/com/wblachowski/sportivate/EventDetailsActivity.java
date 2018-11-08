@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class EventDetailsActivity extends AppCompatActivity {
 
     @Override
@@ -19,11 +22,26 @@ public class EventDetailsActivity extends AppCompatActivity {
         setTitle(getIntent().getStringExtra("TITLE"));
         TextView snippet = (TextView) findViewById(R.id.eventSnippet);
         snippet.setText(getIntent().getStringExtra("SNIPPET"));
-        boolean isYours = getIntent().getBooleanExtra("YOUR",false);
+        boolean isYours = getIntent().getBooleanExtra("YOUR", false);
 
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.eventLayout);
-        String[] participants = {"Jan Kowalski", "Adam Bednarek", "Zdzisław Zamojcin"};
+        String[][] participantsSet = {
+                new String[]{"• Jan Kowalski", "• Adam Bednarek", "• Zdzisław Zamojcin"},
+                new String[]{"• Robert Lewandowski", "• Michał Pazdan"},
+                new String[]{"• Przemysław Trzeciakowski", "• Zbigniew Boniek", "• Grzegorz Lato"},
+                new String[]{"• Anna Bielawa"}};
+
+        String[] participants = participantsSet[getTitle().length()%4];
+        if(isYours) {
+            participants=new String[]{"• Wojciech Blachowski (Ty)"};
+        }else{
+            if (JoinedEvents.events.contains(new Event(getIntent().getStringExtra("TITLE"), getIntent().getStringExtra("SNIPPET")))) {
+                ArrayList<String> list = new ArrayList<>(Arrays.asList(participants));
+                list.add("• Wojciech Blachowski (Ty)");
+                participants = list.toArray(new String[list.size()]);
+            }
+        }
         for (String participant : participants) {
             TextView textView = new TextView(this);
             textView.setText(participant);
