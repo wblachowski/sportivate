@@ -20,6 +20,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class NewEventActivity extends AppCompatActivity {
     EditText editTextPlace;
@@ -41,6 +42,7 @@ public class NewEventActivity extends AppCompatActivity {
         final EditText editTextDate = (EditText) findViewById(R.id.editTextDate);
         final EditText editTextTime = (EditText) findViewById(R.id.editTextTime);
         editTextPlace = (EditText) findViewById(R.id.editTextPlace);
+        Locale.setDefault(new Locale("pl_PL"));
         buttonDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +58,7 @@ public class NewEventActivity extends AppCompatActivity {
                             }
                         }, year, month, dayOfMonth);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                datePickerDialog.getDatePicker().setFirstDayOfWeek(Calendar.MONDAY);
                 datePickerDialog.show();
             }
         });
