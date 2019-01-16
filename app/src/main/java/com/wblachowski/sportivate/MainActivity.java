@@ -11,13 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +35,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_map);
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new EventsMapFragment()).commit();
 
-        mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -90,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_settings) {
-            fm.beginTransaction().replace(R.id.content_frame,new SettingsFragment()).commit();
+            fm.beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

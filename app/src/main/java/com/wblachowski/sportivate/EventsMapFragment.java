@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -35,6 +37,7 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
     private ArrayList<Marker> markers = new ArrayList<>();
     private ArrayList<Marker> yourMarkers = new ArrayList<>();
     GoogleMap googleMap;
+    private AdView mAdView;
 
     @Nullable
     @Override
@@ -56,6 +59,10 @@ public class EventsMapFragment extends Fragment implements OnMapReadyCallback, G
                 startActivity(intent);
             }
         });
+
+        mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
