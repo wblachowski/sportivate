@@ -1,6 +1,8 @@
 package com.wblachowski.sportivate;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,10 +34,10 @@ public class EventDetailsActivity extends AppCompatActivity {
                 new String[]{"• Przemysław Trzeciakowski", "• Zbigniew Boniek", "• Grzegorz Lato"},
                 new String[]{"• Anna Bielawa"}};
 
-        String[] participants = participantsSet[getTitle().length()%4];
-        if(isYours) {
-            participants=new String[]{"• Wojciech Blachowski (Ty)"};
-        }else{
+        String[] participants = participantsSet[getTitle().length() % 4];
+        if (isYours) {
+            participants = new String[]{"• Wojciech Blachowski (Ty)"};
+        } else {
             if (JoinedEvents.events.contains(new Event(getIntent().getStringExtra("TITLE"), getIntent().getStringExtra("SNIPPET")))) {
                 ArrayList<String> list = new ArrayList<>(Arrays.asList(participants));
                 list.add("• Wojciech Blachowski (Ty)");
@@ -55,10 +57,35 @@ public class EventDetailsActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Event event = new Event(getIntent().getStringExtra("TITLE"), getIntent().getStringExtra("SNIPPET"));
-                    YourEvents.events.remove(event);
-                    Toast.makeText(getApplicationContext(), "Odwołałeś wydarzenie", Toast.LENGTH_SHORT).show();
-                    finish();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+                    builder.setTitle("Potwierdzenie");
+                    builder.setMessage("Na pewno chcesz odwołać wydarzenie?");
+
+                    builder.setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing but close the dialog
+                            dialog.dismiss();
+                            Event event = new Event(getIntent().getStringExtra("TITLE"), getIntent().getStringExtra("SNIPPET"));
+                            YourEvents.events.remove(event);
+                            Toast.makeText(getApplicationContext(), "Odwołałeś wydarzenie", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
+
+                    builder.setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            // Do nothing
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
             });
         } else {
